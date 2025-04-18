@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'pages#home'
+  resources :users, only: [:index, :show]
+  resources :chats, only: [:index, :show]
+  resources :messages, only: [:index, :show]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,4 +16,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get 'home', to: 'main#home'  # Ruta para la página "Contact"
+  get 'about', to: 'users#index'  # Ruta para la página "About"
+  get 'contact', to: 'main#contact'
 end

@@ -1,0 +1,29 @@
+<h1>All Messages</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Chat ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Body</th>
+      <th scope="col">Created At</th>
+      <th scope="col">Updated At</th>
+      <th scope="col">Show</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.id %></td>
+        <td><%= message.chat_id %></td>
+        <td><%= message.user_id %></td>
+        <td><%= message.body %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.updated_at %></td>
+        <td><%= link_to 'Show', message_path(message) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
