@@ -21,8 +21,10 @@
         <td><%= chat.receiver_id %></td>
         <td><%= chat.created_at %></td>
         <td><%= chat.updated_at %></td>
-        <td><%= link_to 'Show', chat_path(chat) %></td>
+        <td><%= link_to 'Show', chat_path(chat), class: 'btn btn-primary btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New Chat', new_chat_path, class: 'btn btn-primary' %>
