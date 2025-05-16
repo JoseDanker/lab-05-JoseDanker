@@ -1,5 +1,16 @@
-<%= form_with(model: @chat) do |f| %>
+<h1>New Chat</h1>
 
+<%= form_with(model: @chat) do |f| %>
+  <% if @chat.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</h5>
+      <ul>
+        <% @chat.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.label :sender_id, "Sender" %>

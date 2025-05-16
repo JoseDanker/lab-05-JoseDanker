@@ -5,4 +5,22 @@
 <p><strong>Created At:</strong> <%= @chat.created_at %></p>
 <p><strong>Updated At:</strong> <%= @chat.updated_at %></p>
 
-<%= link_to 'Back to Chats', chats_path %>
+<%= link_to 'Back to Chats', chats_path, class: "btn btn-primary" %>
+
+<h1>Chat Details</h1>
+
+<p>
+  <strong>Sender:</strong> <%= @chat.sender.email %><br>
+  <strong>Receiver:</strong> <%= @chat.receiver.email %>
+</p>
+
+<h2>Messages</h2>
+<ul>
+  <% @messages.each do |message| %>
+    <li>
+      <strong><%= message.user.email %>:</strong>
+      <%= message.body %>
+      <em>(<%= message.created_at.strftime("%Y-%m-%d %H:%M") %>)</em>
+    </li>
+  <% end %>
+</ul>

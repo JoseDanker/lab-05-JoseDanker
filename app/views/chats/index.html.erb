@@ -10,7 +10,7 @@
       <th scope="col">Receiver ID</th>
       <th scope="col">Created At</th>
       <th scope="col">Updated At</th>
-      <th scope="col">Show</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +21,8 @@
         <td><%= chat.receiver_id %></td>
         <td><%= chat.created_at %></td>
         <td><%= chat.updated_at %></td>
-        <td><%= link_to 'Show', chat_path(chat), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Show', chat_path(chat), class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Edit', edit_chat_path(chat), class: 'btn btn-secondary btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>

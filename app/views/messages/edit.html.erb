@@ -1,0 +1,22 @@
+<h1>Edit Message</h1>
+
+<%= form_with model: @message do |form| %>
+  
+  <% if @message.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h5>
+      <ul>
+        <% @message.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :body, "Message" %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Update Message", class: "btn btn-primary" %>
+<% end %>

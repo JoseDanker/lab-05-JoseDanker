@@ -15,17 +15,16 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'pages#home'
 
-  get '/home', to: 'main#home'  
-  resources :messages, only: [:index, :new, :create, :show]
-  resources :chats, only: [:index, :new, :create, :show] 
-
-  
+  get '/home', to: 'main#home'
+  resources :messages, only: [:index, :new, :create, :show, :edit, :update]
+  resources :chats, only: [:index, :new, :create, :show, :edit, :update]
 
   resources :users
   get "/users/:id", to: "users#show", as: "user"
   get "/users/new", to: "users#new"
   post "/users", to: "users#create"
-  
+  get "/users/:id/edit", to: "users#edit"
+  patch "/users/:id", to: "users#update"
 
 end
 

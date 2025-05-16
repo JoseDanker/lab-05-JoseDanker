@@ -5,6 +5,7 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
+    @messages = @chat.messages.includes(:user)
   end
 
   def new
@@ -19,6 +20,20 @@ class ChatsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @chat = Chat.find(params[:id])
+  end
+
+  def update
+    @chat = Chat.find(params[:id])
+    if @chat.update(chat_params)
+      redirect_to @chat, notice: 'Chat was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
 
   private
 

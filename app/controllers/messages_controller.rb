@@ -21,6 +21,20 @@ class MessagesController < ApplicationController
     end
   end
 
+  def edit
+    @message = Message.find(params[:id])
+  end
+  def update
+    @message = Message.find(params[:id])
+    if @message.update(message_params)
+      redirect_to @message, notice: "Mensaje actualizado correctamente."
+    else
+      render :edit
+    end
+  end
+
+  
+
   private
 
   def set_message
