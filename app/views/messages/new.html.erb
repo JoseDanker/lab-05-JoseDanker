@@ -1,6 +1,6 @@
 <h1>New Message</h1>
 
-<%= form_with(model: @message) do |f| %>
+<%= form_with(model: @message, local: true) do |f| %>
 
   <% if @message.errors.any? %>
     <div class="alert alert-danger">
@@ -13,22 +13,23 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :chat_id, "Chat" %>
-    <%= f.select :chat_id, Chat.all.map { |c| ["Chat ##{c.id}: #{c.sender.email} ↔ #{c.receiver.email}", c.id] }, { prompt: "Select chat" }, class: "form-control" %>
+  <%# ✅ Select solo con los chats en los que participa el current_user %>
+  <div class="form-group mb-3">
+    <%= f.label :chat_id, "Chat", class: "form-label" %>
+    <%= f.select :chat_id,
+        Chat.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+            .map { |c| ["Chat ##{c.id}: #{c.sender.email} ↔ #{c.receiver.email}", c.id] },
+        { prompt: "Select chat" },
+        class: "form-select" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :user_id, "Author" %>
-    <%= f.select :user_id, User.all.map { |u| [u.email, u.id] }, { prompt: "Select author" }, class: "form-control" %>
+  <%# ✅ El user_id (autor) se setea automáticamente con hidden_field %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="form-group mb-3">
+    <%= f.label :body, "Message", class: "form-label" %>
+    <%= f.text_area :body, class: "form-control", rows: 3 %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :body, "Message" %>
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-
-  <%= f.submit "Send Message", class: "btn btn-primary mt-2" %>
+  <%= f.submit "Send Message", class: "btn btn-primary" %>
 <% end %>
-
-

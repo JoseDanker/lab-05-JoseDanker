@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Usuarios creados correctamente:
 
-Things you may want to cover:
+* email: a@a.a password: 123456
 
-* Ruby version
+* email: b@b.b password: 123456
 
-* System dependencies
+* email: admin@admin.com password: admin123
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

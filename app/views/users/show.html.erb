@@ -6,28 +6,37 @@
 <p><strong>Updated At:</strong> <%= @user.updated_at %></p>
 
 <%= link_to 'Back to Users', users_path, class: "btn btn-primary" %>
-<%= link_to 'Edit User', edit_user_path(@user), class: "btn btn-secondary" %>
 
 
-<h2>Chats</h2>
-<ul>
-  <% @user.all_chats.each do |chat| %>
-    <li>
-      Chat ID: <%= link_to chat.id, chat_path(chat) %> -
-      Participants:
-      <%= User.find(chat.sender_id).email %> &
-      <%= User.find(chat.receiver_id).email %>
-    </li>
+<% if can? :manage_profile, @user %>
+  <h2>Chats</h2>
+  <% if @user.all_chats.any? %>
+    <ul>
+      <% @user.all_chats.each do |chat| %>
+        <li>
+          Chat ID: <%= link_to chat.id, chat_path(chat) %> -
+          Participants:
+          <%= User.find(chat.sender_id).email %> &
+          <%= User.find(chat.receiver_id).email %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No tienes chats.</p>
   <% end %>
-</ul>
 
-<h2>Messages Sent</h2>
-<ul>
-  <% @messages.each do |message| %>
-    <li>
-      [Chat ID: <%= link_to message.chat_id, chat_path(message.chat_id) %>] 
-      <strong><%= message.body %></strong> 
-      at <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
-    </li>
+  <h2>Messages Sent</h2>
+  <% if @messages.any? %>
+    <ul>
+      <% @messages.each do |message| %>
+        <li>
+          [Chat ID: <%= link_to message.chat_id, chat_path(message.chat_id) %>] 
+          <strong><%= message.body %></strong> 
+          at <%= message.created_at.strftime("%Y-%m-%d %H:%M") %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No has enviado mensajes.</p>
   <% end %>
-</ul>
+<% end %>

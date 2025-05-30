@@ -12,15 +12,14 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :sender_id, "Sender" %>
-    <%= f.select :sender_id, User.all.collect { |u| [u.email, u.id] }, { prompt: "Select sender" }, class: 'form-control' %>
+  <%= f.hidden_field :sender_id, value: current_user.id %>
+
+
+  <div class="mb-3">
+    <%= f.label :receiver_id, "Select Receiver", class: "form-label" %>
+    <%= f.collection_select :receiver_id, User.where.not(id: current_user.id), :id, :email, {}, class: "form-select" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :receiver_id, "Receiver" %>
-    <%= f.select :receiver_id, User.all.collect { |u| [u.email, u.id] }, { prompt: "Select receiver" }, class: 'form-control' %>
-  </div>
 
   <%= f.submit "Create Chat", class: "btn btn-primary mt-2" %>
 <% end %>

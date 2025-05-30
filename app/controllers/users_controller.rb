@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find(params[:id])
-    @chats = @user.all_chats
-    @messages = @user.messages
+    @user = User.find_by(id: params[:id])
+    authorize! :read, @user
+    if @user.nil?
+      redirect_to root_path, alert: "Usuario no encontrado."
+    else
+      @chats = @user.all_chats
+      @messages = @user.messages
+    end
   end
 
   def new
