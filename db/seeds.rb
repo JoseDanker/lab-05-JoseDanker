@@ -22,9 +22,20 @@ ActiveRecord::Base.connection.reset_pk_sequence!('messages')
   User.create!(
     email: "user#{i}@gmail.com",
     first_name: "First#{i}",
-    last_name: "Last#{i}"
+    last_name: "Last#{i}",
+    password: "password123",
+    password_confirmation: "password123",
+    admin: false
   )
 end
+User.create!(
+  email: "admin@gmail.com",
+  first_name: "Admin",
+  last_name: "User",
+  password: "admin123",
+  password_confirmation: "admin123",
+  admin: true
+)
 
 10.times do
   sender_id = rand(1..10)
