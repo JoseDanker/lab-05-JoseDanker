@@ -18,7 +18,7 @@
       <tr>
         <td><%= message.id %></td>
         <td><%= message.chat_id %></td>
-        <td><%= message.user_id %></td>
+        <td><%= "#{message.user.first_name} #{message.user.last_name}" %></td>
         <td><%= message.body %></td>
         <td><%= message.created_at %></td>
         <td><%= message.updated_at %></td>

@@ -2,10 +2,11 @@
 
 Usuarios creados correctamente:
 
-* email: a@a.a password: 123456
+* Usuarios normales
+* * email: user#{i}@gmail.com password: paswpassword123
 
-* email: b@b.b password: 123456
 
-* email: admin@admin.com password: admin123
+* Usuario Admin:
+* * email: admin@gmail.com password: admin123
 
 

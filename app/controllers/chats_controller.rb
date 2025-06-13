@@ -3,11 +3,7 @@ class ChatsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if current_user.admin?
-      @chats = Chat.all
-    else
-      @chats = Chat.where("sender_id = :id OR receiver_id = :id", id: current_user.id)
-    end
+    @chats = current_user.admin? ? Chat.all : Chat.involving(current_user.id)
   end
 
   def show

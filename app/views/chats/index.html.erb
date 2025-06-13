@@ -17,8 +17,8 @@
     <% @chats.each do |chat| %>
       <tr>
         <td><%= chat.id %></td>
-        <td><%= chat.sender_id %></td>
-        <td><%= chat.receiver_id %></td>
+        <td><%= "#{chat.sender.first_name} #{chat.sender.last_name}" %></td>
+        <td><%= "#{chat.receiver.first_name} #{chat.receiver.last_name}" %></td>
         <td><%= chat.created_at %></td>
         <td><%= chat.updated_at %></td>
         <td><%= link_to 'Show', chat_path(chat), class: 'btn btn-primary btn-sm' %>
